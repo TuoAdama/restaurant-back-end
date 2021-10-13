@@ -15,4 +15,5 @@ class Categorie extends Model
         return $this->hasMany(Plat::class);
     }
 
+
 }

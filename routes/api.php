@@ -9,7 +9,7 @@ use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\TableClientController;
-use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,23 +26,37 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::get('/logout', function (Request $request) {
+        return $request->user()->tokens()->delete();
+    });
+
+    Route::get('test', function () {
+        return "It's work";
+    });
+
+    Route::post('/commande/save', [CommandeController::class, 'save']);
+    Route::post('/categorie/save', [CategorieController::class, 'save']);
+    Route::post('/plat/save', [PlatController::class, 'save']);
+    Route::post('/tableclient/save', [TableClientController::class, 'save']);
+    Route::post('/poste', [PosteController::class, 'save']);
+    Route::post('/image/save', [ImageController::class, 'save']);
+});
+
 Route::get('/categorie', [CategorieController::class, 'all']);
 Route::get('/categorie/{id}', [CategorieController::class, 'find']);
-Route::post('/categorie/save', [CategorieController::class, 'save']);
 
 Route::get('/plat', [PlatController::class, 'all']);
 Route::get('/plat/{id}', [PlatController::class, 'find']);
-Route::post('/plat/save', [PlatController::class, 'save']);
 
 Route::get('/tableclient', [TableClientController::class, 'all']);
 Route::get('/tableclient/{numero_table}', [TableClientController::class, 'findByNumeroTable']);
-Route::post('/tableclient/save', [TableClientController::class, 'save']);
 
 
 Route::get('/poste', [PosteController::class, 'all']);
 Route::get('/poste/libelle/{libelle}', [PosteController::class, 'findByLibelle']);
-Route::post('/poste/id/{id}', [PosteController::class, 'findById']);
-Route::post('/poste', [PosteController::class, 'save']);
+Route::get('/poste/id/{id}', [PosteController::class, 'findById']);
 
 Route::get('/personnel', [PersonnelController::class, 'all']);
 Route::get('/personnel/save', [PersonnelController::class, 'save']);
@@ -51,14 +65,12 @@ Route::get('/login', [PersonnelController::class, 'login']);
 
 Route::get('/commande', [CommandeController::class, 'all']);
 Route::get('/commande/{id}', [CommandeController::class, 'find']);
-Route::post('/commande/save', [CommandeController::class, 'save']);
+
 Route::get('/commande/personnel/{id}', [CommandeController::class, 'findByPersonneId']);
 Route::get('/commande/table={num}/personnel={id}', [CommandeController::class, 'findByTableNum']);
 
 Route::get('/image', [ImageController::class, 'all']);
-Route::post('/image/save', [ImageController::class, 'save']);
 Route::get('/image/{id}', [ImageController::class, 'find']);
 
-Route::post('/test', function(Illuminate\Http\Request $request){
-    return $request->commandes;
-});
+Route::post('/user/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);

@@ -10,7 +10,7 @@ class CategorieController extends Controller
 {
     public function all()
     {
-        return response(Categorie::all(),200);
+        return response(Categorie::select()->orderBy('libelle')->get(),200);
     }
 
     public function save(Request $request)

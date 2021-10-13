@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class Personnel extends Model
 {
@@ -13,6 +14,11 @@ class Personnel extends Model
     public function poste()
     {
         return $this->belongsTo(Poste::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function commandes()

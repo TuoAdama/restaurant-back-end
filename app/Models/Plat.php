@@ -9,7 +9,8 @@ class Plat extends Model
 {
     use HasFactory;
 
-    protected $garded = ['id']; 
+    //protected $garded = ['id']; 
+    protected $fillable = ['categorie_id', 'libelle', 'prix'];
 
     public function categorie()
     {

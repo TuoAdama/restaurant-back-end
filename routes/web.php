@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\CategorieController;
-use App\Models\Categorie;
 use App\Models\Plat;
+use App\Models\Categorie;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategorieController;
 
 /*
 |--------------------------------------------------------------------------

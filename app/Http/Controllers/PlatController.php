@@ -15,7 +15,8 @@ class PlatController extends Controller
         //validation des données...
         $validator = Validator::make($request->all(), [
             'categorie_id' => 'required|integer|exists:App\Models\Categorie,id',
-            'libelle' => 'required|string'
+            'libelle' => 'required|string',
+            'prix'=>'required|integer',
         ]);
 
         if($validator->fails()){
@@ -24,6 +25,7 @@ class PlatController extends Controller
 
         $categorie = Categorie::find($request->input('categorie_id'));
 
+        
         if($categorie == null){
             return response([
                 'message' => 'categorie non trouvée',
@@ -32,7 +34,8 @@ class PlatController extends Controller
 
         $plat = new Plat([
             'categorie_id' => $request->input('categorie_id'),
-            'libelle' => $request->input('libelle')
+            'libelle' => $request->input('libelle'),
+            'prix' => $request->input('prix')
         ]);
 
         $plat->save();
@@ -42,7 +45,7 @@ class PlatController extends Controller
 
     public function all()
     {
-        $plats = Plat::all();
+        $plats = Plat::select()->orderBy('libelle')->get();
         foreach ($plats as $plat) {
             $plat->images;
             $plat->categorie;
