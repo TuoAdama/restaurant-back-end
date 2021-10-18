@@ -53,9 +53,16 @@ class CommandeController extends Controller
         return response($commande, 201);
     }
 
-    public function findByPersonneId($id)
+    public function findByPersonneId($id, $date = null)
     {
-        $commandes = Commande::where('personnel_id', $id)->orderBy('created_at', 'desc')->get();
+        $commandes = Commande::where('personnel_id', $id);
+
+        if($date != null){
+            $commandes->whereDate('created_at', $date);
+        }
+        
+        $commandes  = $commandes->get();
+
         if ($commandes == null) {
             return response([], 404);
         }

@@ -66,7 +66,7 @@ Route::get('/login', [PersonnelController::class, 'login']);
 Route::get('/commande', [CommandeController::class, 'all']);
 Route::get('/commande/{id}', [CommandeController::class, 'find']);
 
-Route::get('/commande/personnel/{id}', [CommandeController::class, 'findByPersonneId']);
+Route::get('/commande/personnel/{id}/{date?}', [CommandeController::class, 'findByPersonneId']);
 Route::get('/commande/table={num}/personnel={id}', [CommandeController::class, 'findByTableNum']);
 
 Route::get('/image', [ImageController::class, 'all']);
