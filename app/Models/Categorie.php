@@ -10,6 +10,11 @@ class Categorie extends Model
     protected $table = 'categories';
     use HasFactory;
 
+    public function getAvatarAttribute($value)
+    {
+        return asset('/storage/'.$value);
+    }
+
     public function plat()
     {
         return $this->hasMany(Plat::class);

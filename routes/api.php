@@ -44,10 +44,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/image/save', [ImageController::class, 'save']);
 });
 
-Route::get('/categorie', [CategorieController::class, 'all']);
+Route::get('/categories', [CategorieController::class, 'all']);
 Route::get('/categorie/{id}', [CategorieController::class, 'find']);
 
-Route::get('/plat', [PlatController::class, 'all']);
+Route::get('/plats', [PlatController::class, 'all']);
 Route::get('/plat/{id}', [PlatController::class, 'find']);
 
 Route::get('/tableclient', [TableClientController::class, 'all']);

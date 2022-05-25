@@ -11,6 +11,11 @@ class Image extends Model
 
     protected $guarded = ['id'];
 
+    public function getCheminAttribute($value)
+    {
+        return asset('/storage/'.$value);
+    }
+
     public function plat()
     {
         return $this->belongsTo(Plat::class);

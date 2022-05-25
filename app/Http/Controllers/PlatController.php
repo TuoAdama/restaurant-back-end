@@ -45,13 +45,9 @@ class PlatController extends Controller
 
     public function all()
     {
-        $plats = Plat::select()->orderBy('libelle')->get();
-        foreach ($plats as $plat) {
-            $plat->images;
-            $plat->categorie;
-        }
+        $plats = Plat::with(['categorie','images'])->orderBy('libelle')->get();
         
-        return $plats;
+        return response()->json($plats);
     }
 
     public function find($id)
