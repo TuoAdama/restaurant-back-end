@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Personnel;
 use App\Models\User;
+use Faker\Provider\ar_EG\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -69,5 +70,18 @@ class PersonnelController extends Controller
 
         
 
+    }
+
+    public function updateToken(Request $request)
+    {
+        $id = $request->get('id');
+        $token = $request->get('token');
+
+        $personnel = Personnel::find($id);
+
+        $personnel->notification_token = $token;
+        $personnel->save();
+        
+        return response()->json([$personnel]);
     }
 }

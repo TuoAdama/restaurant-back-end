@@ -74,3 +74,6 @@ Route::get('/image/{id}', [ImageController::class, 'find']);
 
 Route::post('/user/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
+
+
+Route::post('/notification/token/saveOrUpdate', [PersonnelController::class, 'updateToken']);
