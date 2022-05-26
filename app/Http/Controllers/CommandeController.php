@@ -18,44 +18,38 @@ class CommandeController extends Controller
 
     public function save(Request $request)
     {
-
-        $validator = Validator::make($request->all(), [
-            'num_table' => 'required|string|exists:App\Models\TableClient,numero_table',
-            'personnel_id' => 'required|integer|exists:App\Models\Personnel,id',
-            'commandes.*.plat_id' => 'required|integer|exists:App\Models\Plat,id'
-        ]);
-
-        if ($validator->fails()) {
-            return response($validator->errors(), 400);
-        }
-
-        $table_client = TableClient::where('numero_table', $request->num_table)->first();
         $id_etat = Etat::select('id')->where('libelle', 'EN COURS')->first()->id;
+        $personnel_id = $request->personnel_id;
+        $table = TableClient::where('numero_table',$request->table)->first();
 
         $commande = new Commande([
-            'table_client_id' => $table_client->id,
-            'personnel_id' => $request->personnel_id,
+            'table_client_id' => $table->id,
+            'personnel_id' => $personnel_id,
             'etat_id' => $id_etat,
         ]);
 
         $commande->save();
 
-        foreach ($request->commandes as $item) {
+        foreach ($request->plats as $item) {
             PlatCommande::create([
                 'commande_id' => $commande->id,
-                'plat_id' => $item['plat_id'],
+                'plat_id' => $item['id'],
                 'quantite' => $item['quantite'],
             ]);
         }
 
         $commande->etat;
 
-        return response($commande, 201);
+        return response()->json([$commande], 201);
     }
 
     public function findByPersonneId($id, $date = null)
     {
-        $commandes = Commande::where('personnel_id', $id);
+        $commandes = Commande::where('personnel_id', $id)
+                            ->with('personnel','etat', 'table_client')
+                            ->get();
+
+        return $commandes;
 
         if($date != null){
             $commandes->whereDate('created_at', $date);

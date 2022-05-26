@@ -8,6 +8,7 @@ use App\Http\Controllers\PosteController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PersonnelController;
+use App\Http\Controllers\PlatCommandeController;
 use App\Http\Controllers\TableClientController;
 use App\Http\Controllers\UserController;
 
@@ -44,6 +45,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/image/save', [ImageController::class, 'save']);
 });
 
+Route::post('/commande/save', [CommandeController::class, 'save']);
 Route::get('/categories', [CategorieController::class, 'all']);
 Route::get('/categorie/{id}', [CategorieController::class, 'find']);
 
@@ -63,10 +65,10 @@ Route::get('/personnel/save', [PersonnelController::class, 'save']);
 Route::get('/personnel/{id}', [PersonnelController::class, 'find']);
 Route::get('/login', [PersonnelController::class, 'login']);
 
-Route::get('/commande', [CommandeController::class, 'all']);
-Route::get('/commande/{id}', [CommandeController::class, 'find']);
+// Route::get('/commandes', [CommandeController::class, 'all']);
+Route::get('/commandes/{id?}', [PlatCommandeController::class, 'getCommandes']);
 
-Route::get('/commande/personnel/{id}/{date?}', [CommandeController::class, 'findByPersonneId']);
+Route::get('/commandes/personnel/{id}/{date?}', [CommandeController::class, 'findByPersonneId']);
 Route::get('/commande/table={num}/personnel={id}', [CommandeController::class, 'findByTableNum']);
 
 Route::get('/image', [ImageController::class, 'all']);
