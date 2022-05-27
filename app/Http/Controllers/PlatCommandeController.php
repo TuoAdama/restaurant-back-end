@@ -16,8 +16,9 @@ class PlatCommandeController extends Controller
             ->get();
 
         if ($id) {
-            $commandeIds = Commande::where('personnel_id', $id)->get()->pluck('id')->toArray();
-            $plats = PlatCommande::whereIn('id', $commandeIds)
+            $commandeIds = Commande::where('personnel_id', $id)
+                    ->get()->pluck('id')->toArray();
+            $plats = PlatCommande::whereIn('commande_id', $commandeIds)
                 ->with(['plat' => function ($p) {
                     $p->with('images', 'categorie');
                 }, 'commande' => function ($cmd) {

@@ -63,7 +63,7 @@ Route::get('/poste/id/{id}', [PosteController::class, 'findById']);
 Route::get('/personnel', [PersonnelController::class, 'all']);
 Route::get('/personnel/save', [PersonnelController::class, 'save']);
 Route::get('/personnel/{id}', [PersonnelController::class, 'find']);
-Route::get('/login', [PersonnelController::class, 'login']);
+//Route::get('/login', [PersonnelController::class, 'login']);
 
 // Route::get('/commandes', [CommandeController::class, 'all']);
 Route::get('/commandes/{id?}', [PlatCommandeController::class, 'getCommandes']);
