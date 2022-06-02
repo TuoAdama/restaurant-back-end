@@ -10,13 +10,13 @@
                 <img class="img-responsive img-rounded" src="{{asset('assets/img/user.jpg')}}" alt="User picture">
             </div>
             <div class="user-info">
-                <span class="user-name">Jhon
-                    <strong>Smith</strong>
+                <span class="user-name">
+                    <strong>{{auth()->user()->name}}</strong>
                 </span>
-                <span class="user-role">Administrator</span>
+                <span class="user-role">Administrateur</span>
                 <span class="user-status">
                     <i class="fa fa-circle"></i>
-                    <span>Online</span>
+                    <span>En ligne</span>
                 </span>
             </div>
         </div>
@@ -37,7 +37,7 @@
         <div class=" sidebar-item sidebar-menu">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="{{route('personnels')}}">
                         <i class="fa fa-book"></i>
                         <span class="menu-text">Personnels</span>
                     </a>
