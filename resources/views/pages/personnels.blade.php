@@ -1,11 +1,12 @@
 @extends('layouts.base')
 
 @push('css')
+<script defer src="https://kit.fontawesome.com/d0186bbfb8.js" crossorigin="anonymous"></script>
 @endpush
 
 @section('content')
     <div class="container">
-        <table class="table table-striped">
+        <table class="table table-striped" id="dataTable">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -16,13 +17,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>SLSL</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
+                @php
+                    $i = 0;
+                @endphp
+                @foreach ($personnels as $personnel)
+                    <tr>
+                        <th scope="row">{{++$i}}</th>
+                        <td><img height="30px" width="30px" src="{{asset('storage/'.$personnel->user->avatar)}}"></td>
+                        <td>{{$personnel->user->name}}</td>
+                        <td>{{$personnel->sexe}}</td>
+                        <td><a href="{{route('commandes', ['id' => $personnel->id])}}"><i class="fa-solid fa-up-right-from-square"></i></a></td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

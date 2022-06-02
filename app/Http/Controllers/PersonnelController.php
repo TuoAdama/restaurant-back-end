@@ -44,11 +44,6 @@ class PersonnelController extends Controller
         return response($personnel, 201);
     }
 
-    public function all()
-    {
-        return Personnel::all();
-    }
-
     public function find($id)
     {
        $personnel = Personnel::find($id);
@@ -67,9 +62,6 @@ class PersonnelController extends Controller
             'email' => 'required|email',
             'password' => 'required|password_confirmation',
         ]);
-
-        
-
     }
 
     public function updateToken(Request $request)
@@ -83,5 +75,10 @@ class PersonnelController extends Controller
         $personnel->save();
         
         return response()->json([$personnel]);
+    }
+
+    public static function all()
+    {
+        return Personnel::with('user')->get();
     }
 }

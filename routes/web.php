@@ -20,7 +20,8 @@ use App\Http\Controllers\NotificationController;
 */
 
 Route::get('send', [NotificationController::class, 'send']);
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/login', [LoginController::class, 'login']);
+Route::get('/', [HomeController::class, 'index'])->middleware('auth');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/personnels', [HomeController::class, 'personnel'])->name('personnels');
+Route::get('/commandes/{id?}', [HomeController::class, 'commandes'])->name('commandes');
 Route::post('/login', [LoginController::class, 'onSubmit'])->name('onSubmit');

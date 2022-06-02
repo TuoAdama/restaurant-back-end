@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PersonnelController as ApiPersonnelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlatController;
@@ -60,7 +61,7 @@ Route::get('/poste', [PosteController::class, 'all']);
 Route::get('/poste/libelle/{libelle}', [PosteController::class, 'findByLibelle']);
 Route::get('/poste/id/{id}', [PosteController::class, 'findById']);
 
-Route::get('/personnel', [PersonnelController::class, 'all']);
+Route::get('/personnel', [ApiPersonnelController::class, 'all']);
 Route::get('/personnel/save', [PersonnelController::class, 'save']);
 Route::get('/personnel/{id}', [PersonnelController::class, 'find']);
 //Route::get('/login', [PersonnelController::class, 'login']);

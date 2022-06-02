@@ -16,6 +16,13 @@ class HomeController extends Controller
 
     public function personnel()
     {
-        return view('pages.personnels');
+        return view('pages.personnels', [
+            'personnels' => PersonnelController::all()
+        ]);
+    }
+
+    public function commandes(Request $request, $id = null)
+    {
+        dd($id);
     }
 }
