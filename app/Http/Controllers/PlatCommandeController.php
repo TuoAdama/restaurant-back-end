@@ -13,7 +13,7 @@ class PlatCommandeController extends Controller
         $plats = PlatCommande::with(['plat' => function ($element) {
             $element->with('images', 'categorie');
         }], 'commande')
-            ->get();
+        ->orderBy('created_at', 'desc')->get();
 
         if ($id) {
             $commandeIds = Commande::where('personnel_id', $id)
@@ -24,7 +24,7 @@ class PlatCommandeController extends Controller
                 }, 'commande' => function ($cmd) {
                     $cmd->with('table_client', 'etat');
                 }])
-                ->get();
+                ->orderBy('created_at', 'desc')->get();
         }
 
         return $plats;
