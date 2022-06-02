@@ -23,7 +23,7 @@
                     <td>{{$commande->created_at}}</td>
                     <td>{{$commande->commande->table_client->numero_table}}</td>
                     <td><img height="25px" width="25px" src="{{asset($commande->plat->images->first()->chemin)}}" alt=""></td>
-                    <td>{{$commande->plat->name}}</td>
+                    <td>{{ucfirst($commande->plat->libelle)}}</td>
                     <td>{{$commande->quantite}}</td>
                     @php
                         $etat = $commande->commande->etat->libelle;
