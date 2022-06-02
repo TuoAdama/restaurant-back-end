@@ -10,7 +10,7 @@ class NotificationController extends Controller
 {
     public function send()
     {
-        $personnel = Personnel::find(1);
+        $personnel = Personnel::find(3);
 
         $token = $personnel->notification_token;
 

@@ -4,6 +4,7 @@ use App\Models\Plat;
 use App\Models\Categorie;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
 
 /*
@@ -18,3 +19,4 @@ use App\Http\Controllers\NotificationController;
 */
 
 Route::get('send', [NotificationController::class, 'send']);
+Route::get('/', [HomeController::class, 'index']);
