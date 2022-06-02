@@ -27,7 +27,11 @@
         @include('partials.navbar')
         <!-- page-content  -->
         <main class="page-content pt-2">
-            @yield('content')
+            <div class="container">
+                <h2 class="m-3">{{$title}}</h2>
+                <hr>
+                @yield('content')
+            </div>
         </main>
         <!-- page-content" -->
     </div>

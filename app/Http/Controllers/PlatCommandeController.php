@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class PlatCommandeController extends Controller
 {
-    public function getCommandes($id = null)
+    public static function getCommandes($id = null)
     {
         $plats = PlatCommande::with(['plat' => function ($element) {
             $element->with('images', 'categorie');
@@ -27,6 +27,6 @@ class PlatCommandeController extends Controller
                 ->get();
         }
 
-        return response()->json($plats);
+        return $plats;
     }
 }

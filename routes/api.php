@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\PersonnelController as ApiPersonnelController;
+use App\Http\Controllers\Api\PlatCommandeController as ApiPlatCommandeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlatController;
@@ -67,7 +68,7 @@ Route::get('/personnel/{id}', [PersonnelController::class, 'find']);
 //Route::get('/login', [PersonnelController::class, 'login']);
 
 // Route::get('/commandes', [CommandeController::class, 'all']);
-Route::get('/commandes/{id?}', [PlatCommandeController::class, 'getCommandes']);
+Route::get('/commandes/{id?}', [ApiPlatCommandeController::class, 'getCommandes']);
 
 Route::get('/commandes/personnel/{id}/{date?}', [CommandeController::class, 'findByPersonneId']);
 Route::get('/commande/table={num}/personnel={id}', [CommandeController::class, 'findByTableNum']);

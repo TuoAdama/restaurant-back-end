@@ -23,6 +23,8 @@ class HomeController extends Controller
 
     public function commandes(Request $request, $id = null)
     {
-        dd($id);
+        $commandes = PlatCommandeController::getCommandes($id);
+
+        return view('pages.commande', ['commandes' => $commandes]);
     }
 }

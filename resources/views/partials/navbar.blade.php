@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route('commandes')}}">
                         <i class="fa fa-calendar"></i>
                         <span class="menu-text">Commandes</span>
                     </a>

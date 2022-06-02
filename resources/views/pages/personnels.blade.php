@@ -1,37 +1,35 @@
-@extends('layouts.base')
+@extends('layouts.base', ['title' => 'Personnels'])
 
 @push('css')
 <script defer src="https://kit.fontawesome.com/d0186bbfb8.js" crossorigin="anonymous"></script>
 @endpush
 
 @section('content')
-    <div class="container">
-        <table class="table table-striped" id="dataTable">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th>avatar</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Sexe</th>
-                    <th scope="col">Commandes</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php
-                    $i = 0;
-                @endphp
-                @foreach ($personnels as $personnel)
-                    <tr>
-                        <th scope="row">{{++$i}}</th>
-                        <td><img height="30px" width="30px" src="{{asset('storage/'.$personnel->user->avatar)}}"></td>
-                        <td>{{$personnel->user->name}}</td>
-                        <td>{{$personnel->sexe}}</td>
-                        <td><a href="{{route('commandes', ['id' => $personnel->id])}}"><i class="fa-solid fa-up-right-from-square"></i></a></td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+<table class="table table-striped" id="dataTable">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th>avatar</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Sexe</th>
+            <th scope="col">Commandes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @php
+            $i = 0;
+        @endphp
+        @foreach ($personnels as $personnel)
+            <tr>
+                <th scope="row">{{++$i}}</th>
+                <td><img height="30px" width="30px" src="{{asset('storage/'.$personnel->user->avatar)}}"></td>
+                <td>{{$personnel->user->name}}</td>
+                <td>{{$personnel->sexe}}</td>
+                <td><a href="{{route('commandes', ['id' => $personnel->id])}}"><i class="fa-solid fa-up-right-from-square"></i></a></td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 @endsection
 
 
