@@ -41,7 +41,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/commande/save', [CommandeController::class, 'save']);
     Route::post('/categorie/save', [CategorieController::class, 'save']);
-    Route::post('/plat/save', [PlatController::class, 'save']);
     Route::post('/tableclient/save', [TableClientController::class, 'save']);
     Route::post('/poste', [PosteController::class, 'save']);
     Route::post('/image/save', [ImageController::class, 'save']);

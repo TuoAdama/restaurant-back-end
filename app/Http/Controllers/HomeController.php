@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Etat;
+use App\Models\Plat;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,5 +29,19 @@ class HomeController extends Controller
         $commandes = PlatCommandeController::getCommandes($id);
 
         return view('pages.commande', ['commandes' => $commandes, 'etats' => Etat::all()]);
+    }
+
+    public function plat()
+    {
+        $plats = Plat::with(['categorie','images'])
+                ->orderBy('libelle')
+                ->paginate(10);
+
+        $categories = Categorie::all();
+
+        return view('pages.plats',[
+            'plats' => $plats,
+            'categories' => $categories
+        ]);
     }
 }

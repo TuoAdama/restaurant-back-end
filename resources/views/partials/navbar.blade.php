@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route('plats')}}">
                         <i class="fa fa-folder"></i>
                         <span class="menu-text">Menus</span>
                     </a>

@@ -13,15 +13,13 @@ class PlatController extends Controller
     {
 
         //validation des données...
-        $validator = Validator::make($request->all(), [
+
+        $request->validate([
             'categorie_id' => 'required|integer|exists:App\Models\Categorie,id',
             'libelle' => 'required|string',
             'prix'=>'required|integer',
+            'images' => 'required|mimes:jpg,png,jpeg'
         ]);
-
-        if($validator->fails()){
-            return response($validator->errors(), 404);
-        }
 
         $categorie = Categorie::find($request->input('categorie_id'));
 
@@ -64,6 +62,11 @@ class PlatController extends Controller
         return response([
             'plat' => $plat,
         ], 200);
+    }
+
+    public function register()
+    {
+        return "Hello,world";
     }
 
 }

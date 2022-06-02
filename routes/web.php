@@ -7,6 +7,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PlatController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -20,12 +21,18 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->middleware('auth');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::get('/personnels', [HomeController::class, 'personnel'])->name('personnels');
-Route::get('/commandes/{id?}', [HomeController::class, 'commandes'])->name('commandes');
+
 Route::post('/login', [LoginController::class, 'onSubmit'])->name('onSubmit');
 Route::get('/logout', function(){
     Auth::logout();
     return redirect('/login');
 })->name('logout');
+
+Route::middleware('auth')->group(function(){
+    Route::get('/plat/register', [PlatController::class, 'register'])->name('plats.register');
+    Route::get('/plats', [HomeController::class, 'plat'])->name('plats');
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/personnels', [HomeController::class, 'personnel'])->name('personnels');
+    Route::get('/commandes/{id?}', [HomeController::class, 'commandes'])->name('commandes');
+});

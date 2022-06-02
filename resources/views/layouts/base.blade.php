@@ -16,9 +16,9 @@
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
 
-    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/sidebar-themes.css')}}">
-    <link rel="shortcut icon" type="image/png" href="{{asset('assets/img/favicon.png')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/sidebar-themes.css') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" />
     @stack('css')
 </head>
 
@@ -28,9 +28,28 @@
         <!-- page-content  -->
         <main class="page-content pt-2">
             <div class="container">
-                <h2 class="m-3">{{$title}}</h2>
-                <hr>
+                <h2 class="m-3">{{ $title }}</h2>
                 @yield('content')
+            </div>
+
+
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 id="modal-title" class="modal-title"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="modal-body"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" id="valid-modal-btn" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         <!-- page-content" -->
@@ -48,7 +67,9 @@
     <script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
 
-    <script src="{{asset('assets/js/main.js')}}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/modal/modal.js') }}"></script>
+    <script src="{{ asset('assets/js/modal/actions.js') }}"></script>
     @stack('javascript')
 </body>
 
