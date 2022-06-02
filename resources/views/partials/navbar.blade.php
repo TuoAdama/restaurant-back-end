@@ -190,7 +190,7 @@
             </div>
         </div>
         <div>
-            <a href="#">
+            <a href="{{route('logout')}}">
                 <i class="fa fa-power-off"></i>
             </a>
         </div>

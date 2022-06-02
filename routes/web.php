@@ -7,6 +7,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,7 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/personnels', [HomeController::class, 'personnel'])->name('personnels');
 Route::get('/commandes/{id?}', [HomeController::class, 'commandes'])->name('commandes');
 Route::post('/login', [LoginController::class, 'onSubmit'])->name('onSubmit');
+Route::get('/logout', function(){
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');

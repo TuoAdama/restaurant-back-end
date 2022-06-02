@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.base', ['title' => 'Tableau de board'])
 
 @section('content')
 <div id="overlay" class="overlay"></div>
