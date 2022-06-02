@@ -7,6 +7,7 @@ use App\Models\Commande;
 use App\Models\TableClient;
 use App\Models\PlatCommande;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Console\NotificationTableCommand;
 use Illuminate\Support\Facades\Validator;
 
 class CommandeController extends Controller
@@ -124,5 +125,17 @@ class CommandeController extends Controller
         return response([
             'commande' => $commande,
         ], 200);
+    }
+
+    public function changeEtat(Request $request)
+    {
+        $commande = Commande::find($request->commande_id);
+        $commande->etat_id = $request->etat_id;
+
+        $commande->save();
+
+        NotificationController::send($commande->personnel);
+
+        return response()->json([$commande]);
     }
 }

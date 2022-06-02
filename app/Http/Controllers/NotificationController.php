@@ -8,10 +8,8 @@ use Illuminate\Support\Facades\Http;
 
 class NotificationController extends Controller
 {
-    public function send()
+    public static function send(Personnel $personnel)
     {
-        $personnel = Personnel::find(3);
-
         $token = $personnel->notification_token;
 
         Http::post('https://exp.host/--/api/v2/push/send', [
