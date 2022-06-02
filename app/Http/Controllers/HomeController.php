@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Etat;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,6 @@ class HomeController extends Controller
     {
         $commandes = PlatCommandeController::getCommandes($id);
 
-        return view('pages.commande', ['commandes' => $commandes]);
+        return view('pages.commande', ['commandes' => $commandes, 'etats' => Etat::all()]);
     }
 }
