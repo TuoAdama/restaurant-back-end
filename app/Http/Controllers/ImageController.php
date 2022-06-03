@@ -10,37 +10,29 @@ use Illuminate\Support\Facades\Validator;
 
 class ImageController extends Controller
 {
-    public function save(Request $request)
+    public static function save(Request $request, $plat_id)
     {
 
-        $validator = Validator::make($request->all(), [
-            'plat_id' => 'required|integer|exists:App\Models\Plat,id',
-            'image' => 'required|mimes:jpg,png,jpeg'
-        ]);
+        foreach ($request->file('images') as $file) {
+            $path = "plats/" . $plat_id;
+            $i = 0;
+            $file_name = "$i." . $file->extension();
 
-        if($validator->fails()){
-            return response($validator->errors(), 400);
+            while (Storage::exists("public/$path/$file_name")) {
+                $file_name = (++$i) . "." . $file->extension();
+            }
+
+            $file->storeAs("public/$path", $file_name);
+
+            $image = Image::create([
+                'plat_id' => $plat_id,
+                'chemin' => "$path/$file_name",
+            ]);
         }
-
-        $path = "plats/".$request->plat_id;
-        $i = 0;
-        $file_name = "$i.".$request->file('image')->extension();
-
-        while(Storage::exists("public/$path/$file_name")) {
-            $file_name = (++$i).".".$request->file('image')->extension();
-        }
-        
-        $request->file('image')->storeAs("public/$path", $file_name);
-
-        $image = Image::create([
-            'plat_id' => $request->plat_id,
-            'chemin' => "$path/$file_name",
-        ]);
 
         return response([
             'image' => $image,
         ], 201);
-
     }
 
     public function all()

@@ -30,8 +30,10 @@ Route::get('/logout', function(){
 })->name('logout');
 
 Route::middleware('auth')->group(function(){
-    Route::get('/plat/register', [PlatController::class, 'register'])->name('plats.register');
-    Route::get('/plats', [HomeController::class, 'plat'])->name('plats');
+
+    Route::resource('plats', PlatController::class);
+
+    Route::get('/plat/create', [PlatController::class, 'create'])->name('plats.register');
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/personnels', [HomeController::class, 'personnel'])->name('personnels');
     Route::get('/commandes/{id?}', [HomeController::class, 'commandes'])->name('commandes');
