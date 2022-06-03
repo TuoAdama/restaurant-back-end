@@ -11,7 +11,7 @@
             <div class="modal-body" id="modal-body"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" id="valid-modal-btn" class="btn btn-primary">Save changes</button>
+                <button type="button" id="valid-modal-btn" class="btn btn-primary">Valider</button>
             </div>
         </div>
     </div>

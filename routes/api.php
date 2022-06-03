@@ -82,3 +82,5 @@ Route::post('/commandes/changeEtat', [CommandeController::class, 'changeEtat']);
 
 
 Route::post('/notification/token/saveOrUpdate', [PersonnelController::class, 'updateToken']);
+
+Route::get('plats/{id}', [PlatController::class, 'destroy']);

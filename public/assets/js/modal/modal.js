@@ -2,9 +2,6 @@ let modalBody = $("#modal-body");
 let validateBtn = $('#valid-modal-btn');
 let modalTitle = $('#modal-title');
 
-console.log(modalBody, modalTitle, modalTitle);
-console.log($('#modal'));
-
 function initModal({
     content,
     onClickAction,

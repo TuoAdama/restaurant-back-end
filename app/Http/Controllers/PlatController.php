@@ -106,8 +106,8 @@ class PlatController extends Controller
         dd('Edit', $id);
     }
 
-    public function destroy(Request $id)
+    public function destroy($id)
     {
-        dd('destroy', $id);
+        return Plat::destroy($id);
     }
 }

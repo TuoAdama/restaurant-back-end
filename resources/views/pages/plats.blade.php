@@ -1,5 +1,9 @@
 @extends('layouts.base', ['title' => 'Menus'])
 
+@push('css')
+    <script defer src="https://kit.fontawesome.com/d0186bbfb8.js" crossorigin="anonymous"></script>
+@endpush
+
 @section('content')
     <div class="row">
         <button id="add-plat-btn" class="m-3 btn btn-primary">Ajouter un element à la liste</button>
@@ -13,6 +17,7 @@
                     <th scope="col">Libelle</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Date de création</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +31,10 @@
                         <td>{{ ucfirst($plat->libelle) }}</td>
                         <td>{{ $plat->prix }}</td>
                         <td>{{ $plat->created_at }}</td>
+                        <td>
+                            <a href="#" data-id="{{$plat->id}}" class="edit-plat"><i class="fs-3 fa-solid fa-edit"></i></a>
+                            <a href="#" data-id="{{$plat->id}}" class="delete-plat"><i class="fs-3 ml-3 fa-solid fa-trash text-danger"></i></a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -77,6 +86,7 @@
             <button type="submit" class="mx-2 my-3 btn btn-primary">Valider</button> 
         </div>
     </form>
+
 @endsection
 
 @push('javascript')
