@@ -16,7 +16,7 @@ class CreatePlatsTable extends Migration
         Schema::create('plats', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('categorie_id')->unsigned();
-            $table->string('libelle')->unique();
+            $table->string('libelle');
             $table->timestamps();
             
             $table->foreign('categorie_id')
