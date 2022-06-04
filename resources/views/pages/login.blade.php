@@ -44,7 +44,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="email" placeholder="email" required autofocus>
+                            <input type="text" class="form-control" name="email" placeholder="email" value="{{old('email')}}" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
