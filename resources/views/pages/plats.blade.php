@@ -60,11 +60,11 @@
         <div class="mb-3 row">
             <div class="form-group col">
                 <label for="#" class="form-label">Libelle:</label>
-                <input type="text" class="form-control" name="libelle" required>
+                <input type="text" class="form-control" name="libelle" value="{{old('libelle')}}" required>
             </div>
             <div class="form-group col">
                 <label for="#" class="form-label">Prix:</label>
-                <input type="text" class="form-control" name="prix" required>
+                <input type="number" class="form-control" value="{{old('prix')}}" name="prix" required>
             </div>
         </div>
         <div class="mb-4">
