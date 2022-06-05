@@ -15,7 +15,6 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th>avatar</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Sexe</th>
                 <th scope="col">Commandes</th>
@@ -29,7 +28,6 @@
             @foreach ($personnels as $personnel)
                 <tr>
                     <th scope="row">{{ ++$i }}</th>
-                    <td><img height="30px" width="30px" src="{{ asset('storage/' . $personnel->user->avatar) }}"></td>
                     <td>{{ $personnel->user->name }}</td>
                     <td>{{ $personnel->sexe }}</td>
                     <td><a href="{{ route('commandes', ['id' => $personnel->id]) }}"><i
