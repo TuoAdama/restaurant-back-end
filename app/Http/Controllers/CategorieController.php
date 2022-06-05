@@ -39,4 +39,25 @@ class CategorieController extends Controller
         }
         return response($categorie, 200);
     }
+
+    public function index()
+    {
+        return view('pages.categories',[
+            'categories' => Categorie::paginate(10),
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'libelle' => 'required|string|unique:categories,libelle',
+        ]);
+        Categorie::create(['libelle' => trim($request->libelle)]);
+        return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        return Categorie::destroy($id);
+    }
 }

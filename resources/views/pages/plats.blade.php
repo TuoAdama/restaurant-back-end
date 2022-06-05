@@ -32,8 +32,10 @@
                         <td>{{ $plat->prix }}</td>
                         <td>{{ $plat->created_at }}</td>
                         <td>
-                            <a href="#" data-id="{{$plat->id}}" class="edit-plat"><i class="fs-3 fa-solid fa-edit"></i></a>
-                            <a href="#" data-id="{{$plat->id}}" class="delete-plat"><i class="fs-3 ml-3 fa-solid fa-trash text-danger"></i></a>
+                            {{-- <a href="#" data-id="{{ $plat->id }}" class="edit-plat"><i
+                                    class="fs-3 fa-solid fa-edit"></i></a> --}}
+                            <a href="#" data-id="{{ $plat->id }}" class="delete-plat"><i
+                                    class="fs-3 ml-3 fa-solid fa-trash text-danger"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -44,13 +46,14 @@
     {{ $plats->links() }}
 
 
-    <form action="{{route('plats.store')}}" method="POST" id="form-plat" enctype="multipart/form-data" style="display: none">
+    <form action="{{ route('plats.store') }}" method="POST" id="form-plat" enctype="multipart/form-data"
+        style="display: none">
 
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
+                        <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
@@ -60,11 +63,11 @@
         <div class="mb-3 row">
             <div class="form-group col">
                 <label for="#" class="form-label">Libelle:</label>
-                <input type="text" class="form-control" name="libelle" value="{{old('libelle')}}" required>
+                <input type="text" class="form-control" name="libelle" value="{{ old('libelle') }}" required>
             </div>
             <div class="form-group col">
                 <label for="#" class="form-label">Prix:</label>
-                <input type="number" class="form-control" value="{{old('prix')}}" name="prix" required>
+                <input type="number" class="form-control" value="{{ old('prix') }}" name="prix" required>
             </div>
         </div>
         <div class="mb-4">
@@ -79,11 +82,12 @@
         </div>
         <div class="mb-3">
             <div class="form-group">
-                <input required name="images[]" placeholder="choisir des images" type="file" class="form-control-file" accept=".jpg, .jpeg, .png" multiple>
+                <input required name="images[]" placeholder="choisir des images" type="file" class="form-control-file"
+                    accept=".jpg, .jpeg, .png" multiple>
             </div>
         </div>
         <div class="row">
-            <button type="submit" class="mx-2 my-3 btn btn-primary">Valider</button> 
+            <button type="submit" class="mx-2 my-3 btn btn-primary">Valider</button>
         </div>
     </form>
 
@@ -92,4 +96,7 @@
 @push('javascript')
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        var modelname = "plats";
+    </script>
 @endpush

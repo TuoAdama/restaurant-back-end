@@ -54,6 +54,12 @@
                         <span class="menu-text">Menus</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('categories.index')}}">
+                        <i class="fa fa-folder"></i>
+                        <span class="menu-text">Categories</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- sidebar-menu  -->

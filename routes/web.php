@@ -32,9 +32,11 @@ Route::get('/logout', function(){
 Route::middleware('auth')->group(function(){
 
     Route::resource('plats', PlatController::class);
+    Route::resource('categories', CategorieController::class);
 
     Route::get('/plat/create', [PlatController::class, 'create'])->name('plats.register');
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/personnels', [HomeController::class, 'personnel'])->name('personnels');
     Route::get('/commandes/{id?}', [HomeController::class, 'commandes'])->name('commandes');
+
 });

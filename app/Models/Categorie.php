@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Categorie extends Model
 {
     protected $table = 'categories';
+    protected $guarded = ['id'];
     use HasFactory;
 
     public function getAvatarAttribute($value)

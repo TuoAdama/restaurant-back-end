@@ -11,9 +11,10 @@ $(".edit-plat").click(function (e) {
 });
 
 $(".delete-plat").click(function (e) {
+    console.log(modelname);
     let id = $(this).data('id')
     var onClickAction = async function () {
-        fetch('/api/plats/'+id).then(response => response)
+        fetch(`/api/${modelname}/${id}`).then(response => response)
           .then(response => window.location.reload())
     }
 
