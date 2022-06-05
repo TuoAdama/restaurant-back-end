@@ -82,7 +82,7 @@
                 <div class="form-group col-6">
                     <select name="sexe" id="sexe" class="form-control">
                         @foreach ($sexes as $key => $value)
-                            <option value="{{ $value }}">{{ ucfirst($value) }}</option>
+                            <option value="{{ $key }}">{{ ucfirst($value) }}</option>
                         @endforeach
                     </select>
                 </div>

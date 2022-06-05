@@ -131,10 +131,11 @@ class CommandeController extends Controller
     {
         $commande = Commande::find($request->commande_id);
         $commande->etat_id = $request->etat_id;
+        $table = $commande->table_client->table_client;
 
         $commande->save();
 
-        NotificationController::send($commande->personnel);
+        NotificationController::send($commande->personnel, $table);
 
         return response()->json([$commande]);
     }
