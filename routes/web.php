@@ -40,5 +40,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/', [HomeController::class, 'index']);
     // Route::get('/personnels', [HomeController::class, 'personnel'])->name('personnels');
     Route::get('/commandes/{id?}', [HomeController::class, 'commandes'])->name('commandes');
+    Route::redirect('/','/plats');
 
 });
