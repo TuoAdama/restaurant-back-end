@@ -19,7 +19,7 @@ class PosteSeeder extends Seeder
         foreach ($postes as  $poste) {
             $p = Poste::where('libelle', $poste)->first();
             if($p == null){
-                Poste::create(['libelle', $poste]);
+                Poste::create(['libelle' => $poste]);
             }
         }
     }
