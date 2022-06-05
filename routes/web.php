@@ -7,6 +7,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\PlatController;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,10 +34,11 @@ Route::middleware('auth')->group(function(){
 
     Route::resource('plats', PlatController::class);
     Route::resource('categories', CategorieController::class);
+    Route::resource('personnels', PersonnelController::class);
 
     Route::get('/plat/create', [PlatController::class, 'create'])->name('plats.register');
     Route::get('/', [HomeController::class, 'index']);
-    Route::get('/personnels', [HomeController::class, 'personnel'])->name('personnels');
+    // Route::get('/personnels', [HomeController::class, 'personnel'])->name('personnels');
     Route::get('/commandes/{id?}', [HomeController::class, 'commandes'])->name('commandes');
 
 });

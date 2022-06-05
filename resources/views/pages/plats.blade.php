@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <button id="add-plat-btn" class="m-3 btn btn-primary">Ajouter un element à la liste</button>
+        <button id="add-btn" class="m-3 btn btn-primary">Ajouter un element à la liste</button>
     </div>
     <div class="row p-3">
         <table class="table table-striped" id="dataTable">
@@ -46,7 +46,7 @@
     {{ $plats->links() }}
 
 
-    <form action="{{ route('plats.store') }}" method="POST" id="form-plat" enctype="multipart/form-data"
+    <form action="{{ route('plats.store') }}" method="POST" id="form" enctype="multipart/form-data"
         style="display: none">
 
         @if ($errors->any())

@@ -1,6 +1,6 @@
-$('#add-plat-btn').on('click', function (e) {
+$('#add-btn').on('click', function (e) {
 
-    let content = $('#form-plat').clone().show();
+    let content = $('#form').clone().show();
 
     initModal({ content, onClicknuAction: null, title: 'Ajouter un element à la liste' });
 

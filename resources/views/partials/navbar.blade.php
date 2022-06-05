@@ -37,7 +37,7 @@
         <div class=" sidebar-item sidebar-menu">
             <ul>
                 <li>
-                    <a href="{{route('personnels')}}">
+                    <a href="{{route('personnels.index')}}">
                         <i class="fa fa-book"></i>
                         <span class="menu-text">Personnels</span>
                     </a>
