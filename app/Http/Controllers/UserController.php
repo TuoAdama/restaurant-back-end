@@ -21,13 +21,11 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->role_id = 2;
         $user->save();
 
         $personnel = new Personnel();
         $personnel->nom = explode(' ', $user->name)[0];
         $personnel->prenom = explode(' ', $user->name)[1];
-        $personnel->user_id = $user->id;
         $personnel->user_id = $user->id;
         $personnel->poste_id = 1;
         $personnel->date_de_naissance = '1998-06-28';
