@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Categorie;
+use App\Models\Poste;
 use App\Models\TableClient;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Categorie::factory()->count(20)->create();
-        TableClient::factory(20)->count(20)->create();
+        $this->call([PosteSeeder::class, UserSeeder::class]);
     }
 }
