@@ -14,6 +14,9 @@
             </ul>
         </div>
     @endif
+    @if (Session::has('success'))
+        <div class="alert alert-success">{{Session::get('success')}}</div>
+    @endif
     <div class="my-3">
         <form action="{{ route('categories.store') }}" method="POST">
             @csrf

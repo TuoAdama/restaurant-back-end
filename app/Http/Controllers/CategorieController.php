@@ -53,7 +53,7 @@ class CategorieController extends Controller
             'libelle' => 'required|string|unique:categories,libelle',
         ]);
         Categorie::create(['libelle' => trim($request->libelle)]);
-        return redirect()->back();
+        return redirect()->back()->with('success','Catégorie enregistrée');
     }
 
     public function destroy($id)
