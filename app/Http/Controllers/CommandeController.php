@@ -132,7 +132,7 @@ class CommandeController extends Controller
     {
         $commande = Commande::find($request->commande_id);
         $commande->etat_id = $request->etat_id;
-        $table = $commande->table_client->table_client;
+        $table = $commande->table_client->numero_table;
 
         $commande->save();
 

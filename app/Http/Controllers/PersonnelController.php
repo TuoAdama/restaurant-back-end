@@ -73,6 +73,8 @@ class PersonnelController extends Controller
 
         $personnel = Personnel::find($id);
 
+        info("token=$token");
+
         $personnel->notification_token = $token;
         $personnel->save();
 
