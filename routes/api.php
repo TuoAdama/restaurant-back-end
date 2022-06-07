@@ -53,6 +53,8 @@ Route::get('/categorie/{id}', [CategorieController::class, 'find']);
 Route::get('/plats', [PlatController::class, 'all']);
 Route::get('/plat/{id}', [PlatController::class, 'find']);
 
+Route::get('/search/plats/{id}/{categorie}/{count}', [PlatController::class,'search']);
+
 Route::get('/tableclient', [TableClientController::class, 'all']);
 Route::get('/tableclient/{numero_table}', [TableClientController::class, 'findByNumeroTable']);
 

@@ -106,6 +106,22 @@ class PlatController extends Controller
         dd('Edit', $id);
     }
 
+    public function search(Request $request, $id, $categorie, $count)
+    {
+        $cat = Categorie::where('libelle', $categorie)->first();
+        if($cat == null){
+            return response()->json([]);
+        }
+        $plats = Plat::with(['categorie', 'images'])
+                        ->where('categorie_id', $cat->id)
+                        ->where('id', '!=', $id)
+                        ->get()
+                        ->take($count);
+
+        return response()->json($plats);
+        
+    }
+
     public function destroy($id)
     {
         return Plat::destroy($id);
