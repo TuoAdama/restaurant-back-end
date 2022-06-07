@@ -88,3 +88,4 @@ Route::post('/notification/token/saveOrUpdate', [PersonnelController::class, 'up
 Route::get('plats/{id}', [PlatController::class, 'destroy']);
 Route::get('categories/{id}', [CategorieController::class, 'destroy']);
 Route::get('/personnels/{id}', [PersonnelController::class, 'destroy']);
+Route::get('/tableclients/{id}', [TableClientController::class, 'destroy']);

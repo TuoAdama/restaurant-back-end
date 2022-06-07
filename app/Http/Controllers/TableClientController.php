@@ -8,6 +8,29 @@ use Illuminate\Http\Request;
 
 class TableClientController extends Controller
 {
+    public function index()
+    {
+        return view('pages.tableclients', [
+            'tables' => TableClient::paginate(10)
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'numero_table' => 'required|string|unique:table_clients,numero_table',
+        ]);
+
+        TableClient::create(['numero_table' => strtoupper($request->numero_table)]);
+
+        return redirect()->back()->with('success','Table enregistrée');
+    }
+
+    public function destroy($id)
+    {
+        return TableClient::destroy($id);
+    }
+
     public function all()
     {
         return TableClient::all();

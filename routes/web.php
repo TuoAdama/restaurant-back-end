@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\PlatController;
+use App\Http\Controllers\TableClientController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('plats', PlatController::class);
     Route::resource('categories', CategorieController::class);
     Route::resource('personnels', PersonnelController::class);
+    Route::resource('tableclients', TableClientController::class);
 
     Route::get('/plat/create', [PlatController::class, 'create'])->name('plats.register');
     Route::get('/', [HomeController::class, 'index']);

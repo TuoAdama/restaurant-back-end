@@ -60,8 +60,15 @@
                         <span class="menu-text">Categories</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('tableclients.index')}}">
+                        <i class="fa fa-folder"></i>
+                        <span class="menu-text">Tables</span>
+                    </a>
+                </li>
             </ul>
         </div>
+        
         <!-- sidebar-menu  -->
     </div>
     <!-- sidebar-footer  -->
