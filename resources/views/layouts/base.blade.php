@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/sidebar-themes.css') }}">
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" />
+    <script defer src="https://kit.fontawesome.com/d0186bbfb8.js" crossorigin="anonymous"></script>
     @stack('css')
 </head>
 

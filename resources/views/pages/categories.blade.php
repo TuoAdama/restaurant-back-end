@@ -1,9 +1,5 @@
 @extends('layouts.base', ['title' => 'Categories'])
 
-@push('css')
-    <script defer src="https://kit.fontawesome.com/d0186bbfb8.js" crossorigin="anonymous"></script>
-@endpush
-
 @section('content')
     @if ($errors->any())
         <div class="alert alert-danger">

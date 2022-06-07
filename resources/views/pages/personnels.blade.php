@@ -1,9 +1,5 @@
 @extends('layouts.base', ['title' => 'Personnels'])
 
-@push('css')
-    <script defer src="https://kit.fontawesome.com/d0186bbfb8.js" crossorigin="anonymous"></script>
-@endpush
-
 @section('content')
     @if (Session::has('success'))
         <div class="alert alert-success">{{ Session::get('success') }}</div>

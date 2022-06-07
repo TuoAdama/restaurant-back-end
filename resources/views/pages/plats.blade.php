@@ -1,9 +1,5 @@
 @extends('layouts.base', ['title' => 'Menus'])
 
-@push('css')
-    <script defer src="https://kit.fontawesome.com/d0186bbfb8.js" crossorigin="anonymous"></script>
-@endpush
-
 @section('content')
     <div class="row">
         <button id="add-btn" class="m-3 btn btn-primary">Ajouter un element à la liste</button>
