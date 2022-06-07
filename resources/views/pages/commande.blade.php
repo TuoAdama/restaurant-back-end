@@ -12,9 +12,7 @@
                     <th scope="col">#</th>
                     <th>Date</th>
                     <th>Table</th>
-                    <th scope="col">Images</th>
-                    <th scope="col">Plats</th>
-                    <th scope="col">Quantite</th>
+                    <th>Montant</th>
                     <th scope="col">Status</th>
                 </tr>
             </thead>
@@ -25,22 +23,25 @@
                 @foreach ($commandes as $commande)
                     <tr>
                         <th scope="row">{{ ++$i }}</th>
-                        <td>{{ $commande->created_at }}</td>
-                        <td>{{ $commande->commande->table_client->numero_table }}</td>
-                        <td><img height="25px" width="25px" src="{{ asset($commande->plat->images->first()->chemin) }}"
-                                alt="">
-                        </td>
-                        <td>{{ ucfirst($commande->plat->libelle) }}</td>
-                        <td>{{ $commande->quantite }}</td>
+                        <td>{{ $commande->date_de_commande }}</td>
+                        <td>{{ $commande->table_client->numero_table }}</td>
                         @php
-                            $etat = $commande->commande->etat->libelle;
+                            $total = 0;
+                            foreach($commande->plat_commandes as $pc){
+                                $total += $pc->quantite * $pc->plat->prix;
+                            }
+
+                        @endphp
+                        <td>{{$total}}</td>
+                        @php
+                            $etat = $commande->etat->libelle;
                         @endphp
                         <td class="{{ $etat == 'PRET' ? 'text-success' : 'text-danger' }}">
-                            <select data-id="{{ $commande->commande->id }}" @change="updateEtat" name="status"
+                            <select data-id="{{ $commande->id }}" @change="updateEtat" name="status"
                                 class="form-control" style="width: 65%">
                                 @foreach ($etats as $etat)
                                     <option value="{{ $etat->id }}"
-                                        {{ $etat->id == $commande->commande->etat->id ? 'selected' : '' }}
+                                        {{ $etat->id == $commande->etat->id ? 'selected' : '' }}
                                         class="{{ $etat->libelle == 'PRET' ? 'text-success' : 'text-danger' }}">
                                         {{ $etat->libelle }}
                                     </option>

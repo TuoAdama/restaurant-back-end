@@ -69,7 +69,7 @@ Route::get('/personnel/{id}', [PersonnelController::class, 'find']);
 //Route::get('/login', [PersonnelController::class, 'login']);
 
 // Route::get('/commandes', [CommandeController::class, 'all']);
-Route::get('/commandes/{id?}', [ApiPlatCommandeController::class, 'getCommandes']);
+Route::get('/commandes/{id?}/{date?}', [ApiPlatCommandeController::class, 'getCommandes']);
 
 Route::get('/commandes/personnel/{id}/{date?}', [CommandeController::class, 'findByPersonneId']);
 Route::get('/commande/table={num}/personnel={id}', [CommandeController::class, 'findByTableNum']);

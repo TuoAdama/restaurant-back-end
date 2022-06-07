@@ -11,7 +11,7 @@ class PlatCommandeController extends Controller
 {
     public function getCommandes($id = null)
     {
-        $plats = ControllersPlatCommandeController::getCommandes($id);
+        $plats = ControllersPlatCommandeController::getCommandes($id, date('Y-m-d'));
 
         return response()->json($plats);
     }

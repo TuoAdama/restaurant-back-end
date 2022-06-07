@@ -8,8 +8,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PersonnelController;
+use App\Http\Controllers\PlatCommandeController;
 use App\Http\Controllers\PlatController;
 use App\Http\Controllers\TableClientController;
+use App\Models\TableClient;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -44,4 +46,10 @@ Route::middleware('auth')->group(function(){
     Route::get('/commandes/{id?}', [HomeController::class, 'commandes'])->name('commandes');
     Route::redirect('/','/plats');
 
+});
+
+
+Route::get('/test', function(){
+    $t = TableClient::whereDate('created_at', date('Y-m-d'))->get()->toArray();
+    dd($t);
 });
