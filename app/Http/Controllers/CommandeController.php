@@ -27,6 +27,7 @@ class CommandeController extends Controller
             'table_client_id' => $table->id,
             'personnel_id' => $personnel_id,
             'etat_id' => $id_etat,
+            'date_de_commande' => date('Y-m-d H:i:s')
         ]);
 
         $commande->save();
