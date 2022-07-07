@@ -22,7 +22,7 @@ class CommandeController extends Controller
         $id_etat = Etat::select('id')->where('libelle', 'EN COURS')->first()->id;
         $personnel_id = $request->personnel_id;
         $table = TableClient::where('numero_table',$request->table)->first();
-
+        
         $commande = new Commande([
             'table_client_id' => $table->id,
             'personnel_id' => $personnel_id,
