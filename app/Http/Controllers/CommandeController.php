@@ -21,8 +21,8 @@ class CommandeController extends Controller
     {
         $id_etat = Etat::select('id')->where('libelle', 'EN COURS')->first()->id;
         $personnel_id = $request->personnel_id;
-        $table = TableClient::where('numero_table',$request->table)->first();
-        
+        $table = TableClient::where('numero_table', $request->table)->first();
+
         $commande = new Commande([
             'table_client_id' => $table->id,
             'personnel_id' => $personnel_id,
@@ -48,15 +48,15 @@ class CommandeController extends Controller
     public function findByPersonneId($id, $date = null)
     {
         $commandes = Commande::where('personnel_id', $id)
-                            ->with('personnel','etat', 'table_client')
-                            ->get();
+            ->with('personnel', 'etat', 'table_client')
+            ->get();
 
         return $commandes;
 
-        if($date != null){
+        if ($date != null) {
             $commandes->whereDate('created_at', $date);
         }
-        
+
         $commandes  = $commandes->get();
 
         if ($commandes == null) {
@@ -90,7 +90,7 @@ class CommandeController extends Controller
         $commandes->table_client;
         $commandes->table_client;
         $commandes->plat_commandes;
-        $commandes->plat_commandes->map(function($plat_cmd){
+        $commandes->plat_commandes->map(function ($plat_cmd) {
             $plat_cmd->plat;
             $plat_cmd->plat->categorie;
             $plat_cmd->plat->images;
@@ -139,5 +139,13 @@ class CommandeController extends Controller
         NotificationController::send($commande->personnel, $table);
 
         return response()->json([$commande]);
+    }
+
+    public function commandeItems($id)
+    {
+        $commandes = Commande::with('plat_commandes.plat.images')
+            ->where('id', $id)
+            ->first();
+        return response()->json($commandes);
     }
 }
