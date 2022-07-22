@@ -44,4 +44,11 @@ class HomeController extends Controller
             'categories' => $categories
         ]);
     }
+
+    public function details(Request $request, $id)
+    {
+        $data = CommandeController::commandeItems($id)->getData(true);
+
+        return view('pages.commande-detail', ['commande' => $data]);
+    }
 }

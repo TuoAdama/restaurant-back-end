@@ -21,10 +21,17 @@
                     $i = 0;
                 @endphp
                 @foreach ($commandes as $commande)
+                    @php
+                        $cmdID = $commande->id;
+                        $date = Carbon\Carbon::parse($commande->date_de_commande)
+                                              ->locale('fr')->isoFormat('lll');
+                    @endphp
                     <tr>
                         <th scope="row">{{ ++$i }}</th>
-                        <td>{{ $commande->date_de_commande }}</td>
-                        <td>{{ $commande->table_client->numero_table }}</td>
+                        <td>{{ $date }}</td>
+                        <td>
+                            <a href="{{route('commande.detail', ['id' => $cmdID])}}">{{ $commande->table_client->numero_table }}</a>
+                        </td>
                         @php
                             $total = 0;
                             foreach($commande->plat_commandes as $pc){

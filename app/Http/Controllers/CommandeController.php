@@ -141,9 +141,9 @@ class CommandeController extends Controller
         return response()->json([$commande]);
     }
 
-    public function commandeItems($id)
+    public static function commandeItems($id)
     {
-        $commandes = Commande::with('plat_commandes.plat.images')
+        $commandes = Commande::with('table_client', 'plat_commandes.plat.images', 'plat_commandes.plat.categorie')
             ->where('id', $id)
             ->first();
         return response()->json($commandes);
