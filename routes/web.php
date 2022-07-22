@@ -4,6 +4,7 @@ use App\Models\Plat;
 use App\Models\Categorie;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('categories', CategorieController::class);
     Route::resource('personnels', PersonnelController::class);
     Route::resource('tableclients', TableClientController::class);
+    Route::get('/imprimer/commande/{id}', [CommandeController::class, 'print'])->name('print.commande');
 
     Route::get('/plat/create', [PlatController::class, 'create'])->name('plats.register');
     Route::get('/', [HomeController::class, 'index']);
@@ -51,6 +53,5 @@ Route::middleware('auth')->group(function(){
 
 
 Route::get('/test', function(){
-    $t = TableClient::whereDate('created_at', date('Y-m-d'))->get()->toArray();
-    dd($t);
+    return view('facture.facture');
 });

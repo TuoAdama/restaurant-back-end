@@ -36,7 +36,7 @@
                     <td >
                         <h3 class="text-danger">{{number_format($total, 0, '.', ' ')}} FCFA</h3>
                     </td>
-                    <td><button class="btn btn-success">Imprimer la facture</button></td>
+                    <td><a href="{{route('print.commande', ['id' => $commande['id']])}}" class="btn btn-success">Imprimer la facture</a></td>
                 </tr>
             </tbody>
         </table>

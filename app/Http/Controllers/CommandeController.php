@@ -8,6 +8,8 @@ use App\Models\TableClient;
 use App\Models\PlatCommande;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Console\NotificationTableCommand;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class CommandeController extends Controller
@@ -147,5 +149,20 @@ class CommandeController extends Controller
             ->where('id', $id)
             ->first();
         return response()->json($commandes);
+    }
+
+    public function print($id)
+    {
+        $data =  self::commandeItems($id)->getData(true);
+        $data['date'] = Carbon::parse($data['date_de_commande'])->locale('fr')->isoFormat('lll');
+        $total = 0;
+        foreach ($data['plat_commandes'] as $item) {
+            $total += $item['plat']['prix'] * $item['quantite'];
+        }
+        $pdf = Pdf::loadview('facture.facture', [
+            'data' => $data,
+            'total' => $total,
+        ]);
+        return $pdf->download('facture.pdf');
     }
 }
